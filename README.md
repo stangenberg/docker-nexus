@@ -2,36 +2,37 @@
 
 nexus container
 
-Dockerhub: [thstangenberg/nexus][dockerhub]
+Dockerhub: [thstangenberg/nexus][DOCKERHUB]
 
 ## Features ##
 
-- Feature A
-- Feature B
-- Feature C
+- [Nexus Repository][NEXUS]
 
 
 ## Exposed volumes ##
 
-None.
+- /nexus-work
 
 
 ## Exposed ports ##
 
-- 22 / SSH 
+- 22 / SSH
+- 9000 / HTTP
 
 
 ## Environment Variables
 
-None.
+- NEXUS_VERSION - contains the installed nexus version
+- MAX_HEAP - maximal heap for the jvm, default `1g`
+- MIN_HEAP - minimal heap for the jvm, default `256m`
+- JAVA_OPTS - java options for the jvm, default `-server -Djava.net.preferIPv4Stack=true`
 
 
 ## Usage ##
 
-This is a template for new docker images
-See [https://github.com/phusion/baseimage-docker](https://github.com/phusion/baseimage-docker) for usage
+Run nexus repository as docker container.
 
-Write here what to do with it and how - example run commands
+`docker run --name="nexus" -p 9000:9000 thstangenberg/nexus`
 
 
 ## Build 
@@ -50,5 +51,6 @@ Make is used as build system.
 
 [Published under the MIT License][LICENSE]
 
+[NEXUS]: http://www.sonatype.org/nexus/
 [DOCKERHUB]: https://hub.docker.com/u/stangenberg/docker-nexus
 [LICENSE]: https://bitbucket.org/stangenberg/docker-nexus/src/master/LICENSE.md "Published under the MIT License"
