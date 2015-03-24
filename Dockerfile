@@ -3,7 +3,7 @@ FROM thstangenberg/java-builder:8
 MAINTAINER Thorben Stangenberg <thorben@stangenberg.ch>
 
 # The version of nexus to install
-ENV NEXUS_VERSION 2.11.2-03
+ENV NEXUS_VERSION 2.11.2-06
 
 RUN mkdir -p /opt/sonatype/nexus \
   && curl --fail --silent --location --retry 3 \
@@ -22,6 +22,16 @@ ENV MAX_HEAP 1g
 ENV MIN_HEAP 256m
 
 ENV JAVA_OPTS -server -Djava.net.preferIPv4Stack=true
+
+ENV NEXUS_APPLICATION_HOST 0.0.0.0
+
+ENV NEXUS_APPLICATION_PORT 9000
+
+ENV NEXUS_WORK /nexus-work
+
+ENV NEXUS_CONTEXT_PATH /
+
+RUN rm -rf /opt/sonatype/nexus/conf
 
 ADD conf /opt/sonatype/nexus/conf
 

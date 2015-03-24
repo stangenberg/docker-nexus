@@ -26,6 +26,10 @@ Dockerhub: [thstangenberg/nexus][DOCKERHUB]
 - MAX_HEAP - maximal heap for the jvm, default `1g`
 - MIN_HEAP - minimal heap for the jvm, default `256m`
 - JAVA_OPTS - java options for the jvm, default `-server -Djava.net.preferIPv4Stack=true`
+- NEXUS_APPLICATION_HOST 0.0.0.0
+- NEXUS_APPLICATION_PORT 9000
+- NEXUS_WORK /nexus-work
+- NEXUS_CONTEXT_PATH /
 
 
 ## Usage ##
