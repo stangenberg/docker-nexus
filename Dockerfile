@@ -1,9 +1,9 @@
-FROM thstangenberg/java-builder:8
+FROM stangenberg/java:latest
 
 MAINTAINER Thorben Stangenberg <thorben@stangenberg.ch>
 
 # The version of nexus to install
-ENV NEXUS_VERSION 2.11.2-06
+ENV NEXUS_VERSION 2.11.4-01
 
 RUN mkdir -p /opt/sonatype/nexus \
   && curl --fail --silent --location --retry 3 \
@@ -17,18 +17,12 @@ VOLUME /nexus-work
 
 EXPOSE 9000
 
-ENV MAX_HEAP 1g
+ENV JAVA_OPTS -Xms256m -Xmx1g -Djava.awt.headless=true -server -Djava.net.preferIPv4Stack=true
 
-ENV MIN_HEAP 256m
-
-ENV JAVA_OPTS -server -Djava.net.preferIPv4Stack=true
-
+# Use environment variables to override the default configuration
 ENV NEXUS_APPLICATION_HOST 0.0.0.0
-
 ENV NEXUS_APPLICATION_PORT 9000
-
 ENV NEXUS_WORK /nexus-work
-
 ENV NEXUS_CONTEXT_PATH /
 
 RUN rm -rf /opt/sonatype/nexus/conf
@@ -43,4 +37,4 @@ RUN chmod 700 /etc/service/nexus/run
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* \
            /tmp/* \
-           /var/tmp/* 
+           /var/tmp/*

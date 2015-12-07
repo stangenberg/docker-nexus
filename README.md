@@ -2,7 +2,7 @@
 
 nexus container
 
-Dockerhub: [thstangenberg/nexus][DOCKERHUB]
+Dockerhub: [stangenberg/nexus][DOCKERHUB]
 
 ## Features ##
 
@@ -23,9 +23,7 @@ Dockerhub: [thstangenberg/nexus][DOCKERHUB]
 ## Environment Variables
 
 - NEXUS_VERSION - contains the installed nexus version
-- MAX_HEAP - maximal heap for the jvm, default `1g`
-- MIN_HEAP - minimal heap for the jvm, default `256m`
-- JAVA_OPTS - java options for the jvm, default `-server -Djava.net.preferIPv4Stack=true`
+- JAVA_OPTS - java options for the jvm, default `-Xms256m -Xmx1g -Djava.awt.headless=true -server -Djava.net.preferIPv4Stack=true`
 - NEXUS_APPLICATION_HOST 0.0.0.0
 - NEXUS_APPLICATION_PORT 9000
 - NEXUS_WORK /nexus-work
@@ -36,15 +34,15 @@ Dockerhub: [thstangenberg/nexus][DOCKERHUB]
 
 Run nexus repository as docker container.
 
-`docker run --name="nexus" -p 9000:9000 thstangenberg/nexus`
+`docker run --name="nexus" -p 9000:9000 stangenberg/nexus`
 
 
-## Build 
+## Build
 
 Make is used as build system.
 
 - `make` / starts normal docker build.
-- `make run` / build and run the container. This uses `nexus` as container name and automatically stops a running container with an equal name beforehand. 
+- `make run` / build and run the container. This uses `nexus` as container name and automatically stops a running container with an equal name beforehand.
 - `make bash` /  build, run the container and start a bash prompt.
 - `make ncbuild` / normal build without using the docker cache ( --no-cache ).
 
@@ -56,5 +54,5 @@ Make is used as build system.
 [Published under the MIT License][LICENSE]
 
 [NEXUS]: http://www.sonatype.org/nexus/
-[DOCKERHUB]: https://hub.docker.com/u/stangenberg/docker-nexus
-[LICENSE]: https://bitbucket.org/stangenberg/docker-nexus/src/master/LICENSE.md "Published under the MIT License"
+[DOCKERHUB]: https://hub.docker.com/u/stangenberg/nexus
+[LICENSE]: https://github.com/stangenberg/docker-nexus/blob/master/LICENSE.md
